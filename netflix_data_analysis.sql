@@ -1,3 +1,4 @@
+-- Create Table 
 
 CREATE TABLE netflix
 (
@@ -59,16 +60,18 @@ from netflix
 group by country
 order by count(*) desc;
 
+
 -- 5. Identify the longest movies
 
 select title, duration
 from netflix
 where duration = (select max(duration) 
-					from netflix 
-                    where type = 'Movie');
+		from netflix 
+                where type = 'Movie');
                     
                     
 -- 6. Find content added in the last 5 years
+
 with conv_str_date as
 (select show_id,type, title, str_to_date(date_added, '%M %d, %Y') as str_date
 from netflix)
